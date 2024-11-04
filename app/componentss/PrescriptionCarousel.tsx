@@ -12,7 +12,7 @@ import Link from 'next/link';
 
 const slides = [   
   {
-    image: 'p/images/ads/Ad1.jpg',
+    image: '/images/ads/teslariu-mihai-fwGsdvayM-8-unsplash.jpg',
     title: 'Quality Healthcare Products',
     description: 'Get 20% off on all health supplements'
   },

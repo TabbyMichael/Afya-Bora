@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Star, TrendingUp, Award, Clock, Truck } from 'lucide-react';
-import PrescriptionCarousel from './components/PrescriptionCarousel';
+import PrescriptionCarousel from './componentss/PrescriptionCarousel';
 
 const featuredProducts = [
   {

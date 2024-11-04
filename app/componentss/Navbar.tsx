@@ -37,6 +37,7 @@ export default function Navbar() {
                 height={40}
                 className="h-10 w-auto"
               />
+              <span className="ml-2 text-xl font-bold text-gray-800">Afya Bora</span>
             </Link>
 
             {/* Search Bar */}
