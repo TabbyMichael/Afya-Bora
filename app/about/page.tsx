@@ -20,10 +20,10 @@ export default function AboutPage() {
                 </p>
                 <h2 className="text-2xl font-semibold mb-4">Customer Testimonials</h2>
                 <p className="text-gray-700 mb-4">
-                    "Afya Bora has been a lifesaver for me and my family. Their fast delivery and professional service are unmatched." - Jane Doe
+                    &quot;Afya Bora has been a lifesaver for me and my family. Their fast delivery and professional service are unmatched.&quot; - Jane Doe
                 </p>
                 <p className="text-gray-700 mb-4">
-                    "I trust Afya Bora for all my healthcare needs. Their team is knowledgeable and always ready to help." - John Smith
+                    &quot;I trust Afya Bora for all my healthcare needs. Their team is knowledgeable and always ready to help.&quot; - John Smith
                 </p>
                 <div className="text-center">
                     <a href="/contact" className="text-[#40E0D0] hover:underline">Contact Us</a> to learn more about our services.
