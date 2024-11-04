@@ -25,3 +25,37 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.prescription-carousel {
+  padding: 20px 0 40px 0 !important;
+}
+
+.prescription-carousel .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #40E0D0;
+  opacity: 0.5;
+}
+
+.prescription-carousel .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.prescription-carousel .swiper-button-next,
+.prescription-carousel .swiper-button-prev {
+  color: #40E0D0;
+  transform: scale(0.7);
+}
+
+.prescription-carousel .swiper-button-next:hover,
+.prescription-carousel .swiper-button-prev:hover {
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .prescription-carousel .swiper-button-next,
+  .prescription-carousel .swiper-button-prev {
+    display: none;
+  }
+}
