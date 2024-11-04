@@ -1,112 +1,310 @@
 import Image from 'next/image';
+import Link from 'next/link';
+import { Star, TrendingUp, Award, Clock, Truck } from 'lucide-react';
+import PrescriptionCarousel from './components/PrescriptionCarousel';
+
+const featuredProducts = [
+  {
+    id: '1',
+    name: 'Panadol Extra Tablets',
+    price: 250,
+    image: '/images/products/Panadol-Extra-20s.avif',
+    rating: 4.5,
+    prescription_required: false,
+    brand: 'GSK',
+    packSize: '24 tablets'
+  },
+  {
+    id: '2',
+    name: 'Centrum Advance Multivitamin',
+    price: 1850,
+    image: '/images/products/Centrum5054563189646-1-png.webp',
+    rating: 4.8,
+    prescription_required: false,
+    brand: 'Centrum',
+    packSize: '60 tablets'
+  },
+  {
+    id: '3',
+    name: 'Omron Blood Pressure Monitor',
+    price: 6500,
+    image: '/images/products/bp monitor61DCGvLyCsL.jpg',
+    rating: 4.7,
+    prescription_required: false,
+    brand: 'Omron',
+    packSize: '1 unit'
+  },
+  {
+    id: '4',
+    name: 'Glucometer Kit',
+    price: 3200,
+    image: '/images/products/glucometer-machine-600x600.jpg',
+    rating: 4.6,
+    prescription_required: false,
+    brand: 'Accu-Check',
+    packSize: 'Kit with 10 strips'
+  },
+  {
+    id: '5',
+    name: 'Vitamin D3 Supplements',
+    price: 950,
+    image: '/images/products/vitamin-d..webp',
+    rating: 4.4,
+    prescription_required: false,
+    brand: 'HealthKart',
+    packSize: '60 capsules'
+  },
+  {
+    id: '6',
+    name: 'N95 Face Masks',
+    price: 750,
+    image: '/images/products/n95-product-jpg.avif',
+    rating: 4.3,
+    prescription_required: false,
+    brand: '3M',
+    packSize: 'Pack of 10'
+  },
+  {
+    id: '7',
+    name: 'Digital Thermometer',
+    price: 450,
+    image: '/images/products/610lBxabhTL  thermometer.jpg',
+    rating: 4.5,
+    prescription_required: false,
+    brand: 'Dr. Morepen',
+    packSize: '1 unit'
+  },
+  {
+    id: '8',
+    name: 'Omega 3 Fish Oil',
+    price: 1200,
+    image: '/images/products/Now-Foods-Omega-3-.webp',
+    rating: 4.6,
+    prescription_required: false,
+    brand: 'Seven Seas',
+    packSize: '30 capsules'
+  },
+  {
+    id: '9',
+    name: 'First Aid Kit',
+    price: 1500,
+    image: '/images/products/2231716_first-aid.jpg',
+    rating: 4.7,
+    prescription_required: false,
+    brand: 'SafeKit',
+    packSize: 'Complete kit'
+  },
+  {
+    id: '10',
+    name: 'Calcium + Vitamin D3',
+    price: 850,
+    image: '/images/products/Calcium + Vitamin D3.webp',
+    rating: 4.4,
+    prescription_required: false,
+    brand: 'Shelcal',
+    packSize: '30 tablets'
+  },
+  {
+    id: '11',
+    name: 'Hand Sanitizer',
+    price: 250,
+    image: '/images/products/51Fd4ZT0weL._SS400_sanitizer.jpg',
+    rating: 4.3,
+    prescription_required: false,
+    brand: 'Dettol',
+    packSize: '500ml'
+  },
+  {
+    id: '12',
+    name: 'Protein Powder',
+    price: 2500,
+    image: '/images/products/Protein Powder.jpg',
+    rating: 4.8,
+    prescription_required: false,
+    brand: 'Optimum Nutrition',
+    packSize: '1kg'
+  },
+  {
+    id: '13',
+    name: 'Nebulizer Machine',
+    price: 3500,
+    image: '/images/products/NEC801 nebulizer.jpg',
+    rating: 4.6,
+    prescription_required: false,
+    brand: 'Philips',
+    packSize: '1 unit'
+  },
+  {
+    id: '14',
+    name: 'Biotin Supplements',
+    price: 750,
+    image: '/images/products/images   protein.jpg',
+    rating: 4.5,
+    prescription_required: false,
+    brand: 'HealthVit',
+    packSize: '60 tablets'
+  },
+  {
+    id: '15',
+    name: 'Pulse Oximeter',
+    price: 1800,
+    image: '/images/products/Pulse Oximeter.jpg',
+    rating: 4.7,
+    prescription_required: false,
+    brand: 'Dr. Trust',
+    packSize: '1 unit'
+  },
+  {
+    id: '16',
+    name: 'Collagen Supplements',
+    price: 2200,
+    image: '/images/products/Collagen Supplements.webp',
+    rating: 4.6,
+    prescription_required: false,
+    brand: 'Healthy Origins',
+    packSize: '30 sachets'
+  },
+  {
+    id: '17',
+    name: 'Zinc + Vitamin C',
+    price: 550,
+    image: '/images/products/Zinc + Vitamin C.avif',
+    rating: 4.4,
+    prescription_required: false,
+    brand: 'HealthViva',
+    packSize: '60 tablets'
+  },
+  {
+    id: '18',
+    name: 'Digital Weight Scale',
+    price: 1900,
+    image: '/images/products/Digital Weight Scale.png',
+    rating: 4.5,
+    prescription_required: false,
+    brand: 'Omron',
+    packSize: '1 unit'
+  },
+  {
+    id: '19',
+    name: 'Magnesium Supplements',
+    price: 850,
+    image: '/images/products/Magnesium Supplements.webp',
+    rating: 4.3,
+    prescription_required: false,
+    brand: 'Now Foods',
+    packSize: '90 tablets'
+  },
+  {
+    id: '20',
+    name: 'Hot Water Bottle',
+    price: 600,
+    image: '/images/products/Sahyog.webp',
+    rating: 4.4,
+    prescription_required: false,
+    brand: 'Sahyog',
+    packSize: '2L capacity'
+  }
+];
+
+const categories = [
+  {
+    id: '1',
+    name: 'Prescription',
+    image: '/images/products/prescription.webp',
+    description: 'Upload your prescription and get your medicines delivered'
+  },
+  // Add more categories...
+];
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <main className="min-h-screen bg-gray-50">
+      {/* Prescription Carousel */}
+      <PrescriptionCarousel />
+
+      {/* Features */}
+      <div className="bg-white py-12">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {[
+              { icon: Award, title: 'Genuine Products', desc: '100% Authentic Items' },
+              { icon: Truck, title: 'Fast Delivery', desc: 'Across Kenya' },
+              { icon: TrendingUp, title: 'Best Prices', desc: 'Guaranteed Savings' },
+              { icon: Clock, title: '24/7 Support', desc: 'Always Here to Help' }
+            ].map((feature, index) => (
+              <div key={index} className="flex items-center space-x-4">
+                <feature.icon className="h-12 w-12 text-[#40E0D0]" />
+                <div>
+                  <h3 className="font-semibold text-lg">{feature.title}</h3>
+                  <p className="text-gray-600">{feature.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      {/* Categories */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <h2 className="text-3xl font-bold mb-8">Shop by Category</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {categories.map((category) => (
+            <Link
+              key={category.id}
+              href={`/category/${category.id}`}
+              className="group relative overflow-hidden rounded-lg shadow-md"
+            >
+              <div className="relative h-48">
+                <Image
+                  src={category.image}
+                  alt={category.name}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-4 text-white">
+                  <h3 className="font-semibold text-lg">{category.name}</h3>
+                  <p className="text-sm text-gray-200">{category.description}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      {/* Featured Products */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <h2 className="text-3xl font-bold mb-8">Popular Products</h2>
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          {featuredProducts.map((product) => (
+            <Link
+              key={product.id}
+              href={`/product/${product.id}`}
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+            >
+              <div className="relative h-48">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-contain p-4"
+                />
+              </div>
+              <div className="p-4">
+                <p className="text-sm text-gray-500 mb-1">{product.brand}</p>
+                <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
+                <p className="text-sm text-gray-500 mb-2">{product.packSize}</p>
+                <div className="flex items-center justify-between">
+                  <span className="text-xl font-bold text-[#40E0D0]">KSh {product.price}</span>
+                  <div className="flex items-center">
+                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                    <span className="ml-1 text-sm text-gray-600">{product.rating}</span>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </main>
   );
