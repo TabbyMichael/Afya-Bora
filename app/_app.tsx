@@ -1,4 +1,4 @@
-import { CartProvider } from '../context/CartContext';
+import { CartProvider } from './context/CartContext';
 
 function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
   return (
