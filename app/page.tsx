@@ -1,7 +1,22 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Star, TrendingUp, Award, Clock, Truck } from 'lucide-react';
-import PrescriptionCarousel from './componentss/PrescriptionCarousel';
+import PrescriptionCarousel from './componentss/prescription carousel/PrescriptionCarousel';
+
+// Define the Product type
+type Product = {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  rating: number;
+  prescription_required: boolean;
+  brand: string;
+  packSize: string;
+};
 
 const featuredProducts = [
   {
@@ -158,7 +173,7 @@ const featuredProducts = [
     id: '16',
     name: 'Collagen Supplements',
     price: 2200,
-    image: '/images/products/Collagen Supplements.webp',
+    image: '/images/products/Collagen Supplements.png',
     rating: 4.6,
     prescription_required: false,
     brand: 'Healthy Origins',
@@ -217,6 +232,13 @@ const categories = [
 ];
 
 export default function Home() {
+  const [cart, setCart] = useState<Product[]>([]);
+
+  const addToCart = (product: Product) => {
+    setCart([...cart, product]);
+    console.log(`Added ${product.name} to cart`);
+  };
+
   return (
     <main className="min-h-screen bg-gray-50">
       {/* Prescription Carousel */}
@@ -246,7 +268,7 @@ export default function Home() {
 
       {/* Categories */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold mb-8">Shop by Category</h2>
+        <h2 className="text-3xl font-bold mb-8 text-black">Shop by Category</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {categories.map((category) => (
             <Link
@@ -262,7 +284,7 @@ export default function Home() {
                   className="object-cover group-hover:scale-110 transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-4 left-4 text-white">
+                <div className="absolute bottom-4 left-4 text-black">
                   <h3 className="font-semibold text-lg">{category.name}</h3>
                   <p className="text-sm text-gray-200">{category.description}</p>
                 </div>
@@ -274,35 +296,41 @@ export default function Home() {
 
       {/* Featured Products */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold mb-8">Popular Products</h2>
+        <h2 className="text-3xl font-bold mb-8 text-black">Popular Products</h2>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {featuredProducts.map((product) => (
-            <Link
-              key={product.id}
-              href={`/product/${product.id}`}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
-            >
-              <div className="relative h-48">
-                <Image
-                  src={product.image}
-                  alt={product.name}
-                  fill
-                  className="object-contain p-4"
-                />
-              </div>
-              <div className="p-4">
-                <p className="text-sm text-gray-500 mb-1">{product.brand}</p>
-                <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
-                <p className="text-sm text-gray-500 mb-2">{product.packSize}</p>
-                <div className="flex items-center justify-between">
-                  <span className="text-xl font-bold text-[#40E0D0]">KSh {product.price}</span>
-                  <div className="flex items-center">
-                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                    <span className="ml-1 text-sm text-gray-600">{product.rating}</span>
+            <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow flex flex-col justify-between">
+              <Link href={`/product/${product.id}`}>
+                <div>
+                  <div className="relative h-48">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-contain p-4"
+                    />
+                  </div>
+                  <div className="p-4 flex-grow">
+                    <p className="text-sm text-gray-500 mb-1">{product.brand}</p>
+                    <h3 className="font-semibold text-lg mb-2">{product.name}</h3>
+                    <p className="text-sm text-gray-500 mb-2">{product.packSize}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-xl font-bold text-[#40E0D0]">KSh {product.price}</span>
+                      <div className="flex items-center">
+                        <Star className="h-4 w-4 text-yellow-400 fill-current" />
+                        <span className="ml-1 text-sm text-gray-600">{product.rating}</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+              <button
+                onClick={() => addToCart(product)}
+                className="w-full bg-[#40E0D0] text-white py-2 hover:bg-[#36b0a0] mt-auto"
+              >
+                Add to Cart
+              </button>
+            </div>
           ))}
         </div>
       </div>
