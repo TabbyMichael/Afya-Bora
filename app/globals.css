@@ -59,3 +59,30 @@ body {
     display: none;
   }
 }
+
+/* Add these styles to your existing globals.css */
+.react-select__control {
+  border-color: #e5e7eb !important;
+  box-shadow: none !important;
+}
+
+.react-select__control:hover {
+  border-color: #40E0D0 !important;
+}
+
+.react-select__control--is-focused {
+  border-color: #40E0D0 !important;
+  box-shadow: 0 0 0 1px #40E0D0 !important;
+}
+
+.react-select__option--is-selected {
+  background-color: #40E0D0 !important;
+}
+
+.react-select__option:hover {
+  background-color: #e6fffd !important;
+}
+
+.react-select__indicator-separator {
+  display: none;
+}
