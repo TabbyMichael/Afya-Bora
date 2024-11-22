@@ -4,9 +4,11 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { ShoppingCart, Search, Menu, User, Phone, Heart } from 'lucide-react';
 import Image from 'next/image';
+import { useCart } from '@/context/CartContext';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { itemsCount } = useCart();
 
   return (
     <header>
@@ -64,13 +66,13 @@ export default function Navbar() {
                 <User className="h-5 w-5 mr-1" />
                 <span>Account</span>
               </Link>
-              <Link href="/cart" className="flex items-center text-gray-600 hover:text-[#40E0D0]">
-                <div className="relative">
-                  <ShoppingCart className="h-5 w-5 mr-1" />
+              <Link href="/cart" className="flex items-center text-gray-600 hover:text-[#40E0D0] relative">
+                <ShoppingCart className="h-5 w-5 mr-1" />
+                {itemsCount > 0 && (
                   <span className="absolute -top-2 -right-2 bg-[#40E0D0] text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
-                    0
+                    {itemsCount}
                   </span>
-                </div>
+                )}
                 <span>Cart</span>
               </Link>
             </div>
@@ -85,16 +87,7 @@ export default function Navbar() {
 
           {/* Categories Menu */}
           <div className="hidden md:flex items-center space-x-6 py-4">
-            {[
-              'Prescription',
-              'OTC Medicines',
-              'Personal Care',
-              'Wellness',
-              'Baby Care',
-              'Lab Tests',
-              'Medical Devices',
-              'Offers'
-            ].map((category) => (
+            {[/* Removed categories */].map((category) => (
               <Link
                 key={category}
                 href={`/category/${category.toLowerCase().replace(' ', '-')}`}
@@ -108,4 +101,4 @@ export default function Navbar() {
       </nav>
     </header>
   );
-} 
+}
