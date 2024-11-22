@@ -6,6 +6,16 @@ import { ShoppingCart, Search, Menu, User, Phone, Heart } from 'lucide-react';
 import Image from 'next/image';
 import { useCart } from '@/context/CartContext';
 
+const categories = [
+  'Medicines',
+  'Lab Tests',
+  'Healthcare',
+  'Personal Care',
+  'Vitamins',
+  'Medical Devices',
+  'Baby Care'
+] as const;
+
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { itemsCount } = useCart();
@@ -87,7 +97,7 @@ export default function Navbar() {
 
           {/* Categories Menu */}
           <div className="hidden md:flex items-center space-x-6 py-4">
-            {[/* Removed categories */].map((category) => (
+            {categories.map((category) => (
               <Link
                 key={category}
                 href={`/category/${category.toLowerCase().replace(' ', '-')}`}
